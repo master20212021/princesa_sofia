@@ -234,7 +234,9 @@
         };
         
         document.addEventListener('DOMContentLoaded', function () {
-            const countdownDate = new Date("September 27, 2025 19:30:00").getTime();
+            // Se ha cambiado la fecha para usar el formato UTC y evitar errores de zona horaria.
+            // Esto garantiza que el cronómetro funcione correctamente en cualquier parte del mundo.
+            const countdownDate = new Date("2025-09-27T19:30:00-04:00").getTime();
 
             const updateCountdown = () => {
                 const now = new Date().getTime();
