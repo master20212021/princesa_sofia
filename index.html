@@ -6,7 +6,6 @@
     <title>15 años de Sofía Espejo</title>
     
     <!-- Open Graph Tags para compartir en redes sociales -->
-    <!-- Se ha actualizado la imagen de portada con la URL proporcionada por el usuario. -->
     <meta property="og:title" content="15 años de Sofía Espejo">
     <meta property="og:description" content="Confirma tu asistencia y descubre más detalles aquí.">
     <meta property="og:image" content="https://i.postimg.cc/fbCZ5x32/4k.png">
@@ -30,7 +29,6 @@
             font-family: 'Great Vibes', cursive;
         }
         .hero-bg {
-            /* Se ha actualizado la URL de la imagen de fondo con la proporcionada por el usuario. */
             background-image: url('https://i.postimg.cc/fbCZ5x32/4k.png');
             background-size: cover;
             background-position: center 30%;
@@ -58,14 +56,13 @@
         .vogue-font {
             font-family: 'Libre Didot', serif;
             font-weight: 900;
-            letter-spacing: 0.25em; /* Aumentado para un mejor efecto */
+            letter-spacing: 0.25em;
         }
-        /* Estilos para el carrusel */
         .carousel-container {
             position: relative;
             overflow: hidden;
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
         .carousel-slide {
             display: flex;
@@ -75,23 +72,33 @@
             flex-shrink: 0;
             width: 100%;
         }
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            z-index: 50;
+            display: none;
+            text-align: center;
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
     <main>
         <section class="hero-bg h-screen w-full flex flex-col items-center justify-start text-white text-center p-4 relative">
-            <!-- Títulos principales -->
             <div class="fade-in relative z-10 p-4 md:p-0 pt-16">
                 <h1 class="text-7xl md:text-8xl lg:text-9xl font-bold text-shadow vogue-font">VOGUE</h1>
             </div>
-            <!-- Se ha ajustado el margen superior para que baje el texto de 'Princesa Sofía' en pantallas móviles -->
             <div class="fade-in relative z-10 pt-40 md:pt-32">
                 <h1 class="text-4xl md:text-7xl lg:text-8xl font-bold text-shadow">¡PRINCESA SOFÍA!</h1>
                 <h2 class="text-2xl md:text-4xl lg:text-5xl mt-2 md:mt-4 text-shadow font-normal">una historia magica está por empezar.</h2>
             </div>
             
-            <!-- Código de barras estético -->
             <div class="absolute bottom-4 right-4 md:bottom-8 md:right-8 w-16 md:w-28 z-20">
                 <img src="https://i.postimg.cc/3J6wvMVL/Screenshot-2025-09-01-105511.png" alt="Código de barras decorativo" class="w-full h-auto">
             </div>
@@ -146,7 +153,7 @@
                             </div>
                         </div>
                          <div class="flex items-start space-x-4">
-                            <svg class="w-6 h-6 text-violet-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <svg class="w-6 h-6 text-violet-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 2-2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                             <div>
                                 <p class="font-semibold text-lg">Lugar</p>
                                 <p class="text-gray-600">Astoria World Manor</p>
@@ -188,7 +195,6 @@
             <div class="max-w-4xl mx-auto">
                 <div class="carousel-container relative">
                     <div id="carousel-slide" class="carousel-slide flex">
-                        <!-- Se ha actualizado el orden para una secuencia más variada -->
                         <img src="https://i.postimg.cc/Kc99tFFh/sofia6.jpg" alt="Foto de 15 años de Sofía 6" class="carousel-img object-cover rounded-xl">
                         <img src="https://i.postimg.cc/zXt9DK3W/sofia4.jpg" alt="Foto de 15 años de Sofía 4" class="carousel-img object-cover rounded-xl">
                         <img src="https://i.postimg.cc/x1BhMQv1/sofia5.jpg" alt="Foto de 15 años de Sofía 5" class="carousel-img object-cover rounded-xl">
@@ -215,18 +221,15 @@
                 <h3 class="text-4xl md:text-5xl font-normal text-violet-500 mb-6 text-center">Confirmar Asistencia</h3>
                 <p class="text-center text-gray-600 mb-8">Por favor, confirma tu asistencia antes del 15 de septiembre de 2025.</p>
                 
-                <!-- Formulario modificado para recolectar nombres individuales -->
                 <form id="rsvpForm" class="space-y-6">
                     <div>
-                        <label for="mainGuestName" class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
-                        <input type="text" id="mainGuestName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-violet-500 focus:border-violet-500 transition duration-200 guest-name-input" required>
+                        <label for="guestName" class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
+                        <input type="text" id="guestName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-violet-500 focus:border-violet-500 transition duration-200" required>
                     </div>
-                    <div id="additionalGuestsContainer" class="space-y-4">
-                        <!-- Aquí se agregarán dinámicamente los campos de invitados adicionales -->
+                    <div>
+                        <label for="guestCount" class="block text-sm font-medium text-gray-700 mb-1">Número de Invitados (incluyéndote)</label>
+                        <input type="number" id="guestCount" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-violet-500 focus:border-violet-500 transition duration-200" min="1" value="1" required>
                     </div>
-                    <button type="button" id="addGuestBtn" class="w-full sm:w-auto bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition duration-300">
-                        + Agregar Invitado
-                    </button>
                     <button type="submit" class="w-full bg-violet-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-violet-600 transition duration-300">
                         Confirmar Asistencia
                     </button>
@@ -240,6 +243,14 @@
                 </div>
             </div>
         </section>
+        
+        <div id="messageBox" class="message-box">
+            <h4 id="messageTitle" class="text-xl font-bold mb-2"></h4>
+            <p id="messageText" class="text-gray-700"></p>
+            <button onclick="document.getElementById('messageBox').style.display='none'" class="mt-4 bg-violet-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-violet-600">
+                Cerrar
+            </button>
+        </div>
 
         <footer class="text-center py-12">
             <p class="text-gray-600">Tu presencia será el mejor regalo para nosotros.</p>
@@ -252,13 +263,13 @@
           getAuth, signInAnonymously, onAuthStateChanged
         } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import {
-          getFirestore, addDoc, onSnapshot, collection, query, orderBy
+          getFirestore, addDoc, onSnapshot, collection
         } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         
-        // Se usa una variable para el ID de la aplicación, como se recomienda.
+        // usa el mismo que pusiste en las reglas: artifacts/sofia15/...
         const appId = "sofia15";
 
-        // Se ha corregido la configuración para usar el bucket de almacenamiento correcto y se ha añadido measurementId.
+        // TU CONFIG REAL (corregido storageBucket)
         const firebaseConfig = {
           apiKey: "AIzaSyA32Djd4lrnkVEvHt7J-K8-rNLWaTOXn94",
           authDomain: "sofia-d17aa.firebaseapp.com",
@@ -273,89 +284,70 @@
         const db = getFirestore(app);
         const auth = getAuth(app);
         
+        // Función para mostrar mensajes
+        function showMessage(title, message) {
+            const messageBox = document.getElementById('messageBox');
+            const messageTitle = document.getElementById('messageTitle');
+            const messageText = document.getElementById('messageText');
+            messageTitle.textContent = title;
+            messageText.textContent = message;
+            messageBox.style.display = 'block';
+        }
+
         onAuthStateChanged(auth, async (user) => {
           if (!user) await signInAnonymously(auth);
           fetchGuests();
         });
 
-        // Lógica para el nuevo formulario de RSVP
+        // Enviar RSVP
         const rsvpForm = document.getElementById('rsvpForm');
-        const addGuestBtn = document.getElementById('addGuestBtn');
-        const additionalGuestsContainer = document.getElementById('additionalGuestsContainer');
-
-        addGuestBtn.addEventListener('click', () => {
-            const newGuestField = document.createElement('div');
-                        newGuestField.innerHTML = `
-                <label class="block text-sm font-medium text-gray-700 mb-1">Nombre del Invitado</label>
-                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-violet-500 focus:border-violet-500 transition duration-200 guest-name-input" required>
-            `;
-            additionalGuestsContainer.appendChild(newGuestField);
-        });
-
         rsvpForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const guestNameInputs = document.querySelectorAll('.guest-name-input');
-            const guests = Array.from(guestNameInputs).map(input => input.value.trim()).filter(name => name !== '');
-
-            if (guests.length === 0) {
-                return;
-            }
-
-            try {
-                // Ahora se guarda un array de nombres, no un solo nombre y un número.
-                await addDoc(collection(db, `artifacts/${appId}/public/data/rsvps`), {
-                  guests: guests,
-                  timestamp: new Date()
-                });
-                
-                // Reinicia el formulario después de enviar.
-                rsvpForm.reset();
-                additionalGuestsContainer.innerHTML = '';
-            } catch (error) {
-                console.error("Error al guardar la confirmación:", error);
-            }
+          e.preventDefault();
+          const name = document.getElementById('guestName').value.trim();
+          const guests = Number(document.getElementById('guestCount').value);
+          if (!name || guests < 1) return;
+          try {
+              await addDoc(collection(db, `artifacts/${appId}/public/data/rsvps`), {
+                name, guests, timestamp: new Date()
+              });
+              rsvpForm.reset();
+              showMessage("Confirmación Exitosa", "¡Muchas gracias por confirmar tu asistencia!");
+          } catch (error) {
+              console.error("Error al guardar la confirmación:", error);
+              showMessage("Error", "Ocurrió un error al guardar tu confirmación. Por favor, inténtalo de nuevo.");
+          }
         });
 
-        // Listado en tiempo real (ordenado por fecha)
+        // Listado en tiempo real (ordenado por fecha en JS)
         function fetchGuests() {
           const list = document.getElementById('guestList');
-          // Se ha agregado orderBy para mostrar los invitados más recientes primero.
-          const q = query(
-            collection(db, `artifacts/${appId}/public/data/rsvps`),
-            orderBy('timestamp', 'desc')
-          );
-          onSnapshot(q, (snap) => {
+          onSnapshot(collection(db, `artifacts/${appId}/public/data/rsvps`), (snap) => {
             list.innerHTML = '';
             if (snap.empty) {
               list.innerHTML = '<li class="text-center text-gray-500">Sé el primero en confirmar tu asistencia.</li>';
               return;
             }
-            snap.forEach(d => {
-              const g = d.data();
+            
+            // Obtener todos los documentos y ordenarlos por fecha en JavaScript
+            const guests = snap.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+            guests.sort((a, b) => b.timestamp.toDate() - a.timestamp.toDate());
+
+            guests.forEach(g => {
               const li = document.createElement('li');
               li.className = 'text-center';
-              // Corrige el error asegurándose de que 'guests' es un array antes de intentar unirlo.
-              if (Array.isArray(g.guests)) {
-                  li.textContent = g.guests.join(', ');
-              } else if (typeof g.guests === 'string') {
-                  li.textContent = g.guests;
-              } else {
-                  li.textContent = 'Invitado(s) no especificado(s)';
-              }
+              li.textContent = `${g.name} (${g.guests} invitados)`;
               list.appendChild(li);
             });
           }, (err) => console.error('Snapshot error:', err));
         }
-        
+
         function generateCalendarLink() {
             const title = encodeURIComponent("Quinceañera de Sofía Espejo");
             const description = encodeURIComponent("Celebración de los 15 años de Sofía. ¡Te esperamos!");
             const location = encodeURIComponent("Astoria World Manor, 25-22 Astoria Blvd, Queens, NY 11102");
             const startTime = "20250927T233000Z"; 
             const endTime = "20250928T043000Z"; 
-            
             const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startTime}/${endTime}&details=${description}&location=${location}`;
-            
             return googleCalendarUrl;
         }
 
@@ -367,7 +359,6 @@
     </script>
     <script>
         (function () {
-            // Lógica del contador
             const TARGET = Date.parse('2025-09-27T23:30:00Z');
             const $ = (id) => document.getElementById(id);
             const two = (n) => String(n).padStart(2, '0');
@@ -395,12 +386,10 @@
                     }
                 }
             }
-
             tick();
             const timer = setInterval(tick, 1000);
         })();
 
-        // Lógica del carrusel de fotos
         (function () {
             const slideContainer = document.getElementById('carousel-slide');
             const slides = document.querySelectorAll('.carousel-img');
@@ -415,13 +404,11 @@
                 slideContainer.style.transform = `translateX(${offset}%)`;
             }
 
-            // Carrusel de avance automático
             setInterval(() => {
                 currentSlide = (currentSlide + 1) % totalSlides;
                 updateCarousel();
-            }, 3000); // Cambia de foto cada 3 segundos
+            }, 3000);
 
-            // Botones de navegación manuales
             nextButton.addEventListener('click', () => {
                 currentSlide = (currentSlide + 1) % totalSlides;
                 updateCarousel();
