@@ -6,26 +6,32 @@
     <title>15 años de Sofía Espejo</title>
     
     <!-- Open Graph Tags para compartir en redes sociales -->
+    <!-- Se ha actualizado la imagen de portada con la URL proporcionada por el usuario. -->
     <meta property="og:title" content="15 años de Sofía Espejo">
     <meta property="og:description" content="Confirma tu asistencia y descubre más detalles aquí.">
-    <meta property="og:image" content="https://i.postimg.cc/mZpsmc7m/loren.jpg">
+    <meta property="og:image" content="https://i.postimg.cc/fbCZ5x32/4k.png">
     <meta property="og:url" content="URL_DE_TU_PAGINA_AQUI">
     <meta property="og:type" content="website">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Didot&display=swap');
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: #FDFBF8;
         }
-        h1, h2, h3 {
+        h1 {
             font-family: 'Playfair Display', serif;
         }
+        h2, h3 {
+            font-family: 'Great Vibes', cursive;
+        }
         .hero-bg {
-            background-image: url('https://i.postimg.cc/mZpsmc7m/loren.jpg');
+            /* Se ha actualizado la URL de la imagen de fondo con la proporcionada por el usuario. */
+            background-image: url('https://i.postimg.cc/fbCZ5x32/4k.png');
             background-size: cover;
             background-position: center 30%;
         }
@@ -44,20 +50,49 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .rotated-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+        }
+        .vogue-font {
+            font-family: 'Libre Didot', serif;
+            font-weight: 900;
+            letter-spacing: 0.25em; /* Aumentado para un mejor efecto */
+        }
+        /* Estilos para el carrusel */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+        }
+        .carousel-slide {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-img {
+            flex-shrink: 0;
+            width: 100%;
+        }
     </style>
-    <!-- Chosen Palette: Elegant Gold (Off-white, Gold/Champagne, and Dark Gray) -->
-    <!-- Application Structure Plan: A single-page, immersive design structured as a modern digital invitation. It uses a large hero image with magazine-style text overlay to create a "wow" factor, followed by a clear details section. Key interactions are a live countdown timer to build anticipation and 'Add to Calendar'/'View Map' buttons for user convenience. This structure transforms the static text into an engaging and useful experience, which is more suitable for a web-based invitation than a data-centric dashboard. -->
-    <!-- Visualization & Content Choices: Hero Title -> Goal: Impress/Inform -> Presentation: Large, stylized text overlay on hero image -> Interaction: None (static visual) -> Justification: Creates the desired "magazine cover" aesthetic. | Countdown -> Goal: Engage/Excite -> Presentation: Dynamic number display -> Interaction: Live updates every second -> Justification: Builds anticipation for the event. (Vanilla JS) | Event Details -> Goal: Inform -> Presentation: Clean, readable text blocks -> Interaction: None -> Justification: Ensures clarity of essential information. | Action Buttons -> Goal: Utility -> Presentation: Styled buttons -> Interaction: Click to reveal calendar links or open Google Maps -> Justification: Provides practical, helpful actions for guests. (Vanilla JS for modal, simple links). -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 </head>
 <body class="text-gray-800">
 
     <main>
-        <section class="hero-bg h-screen w-full flex flex-col items-center justify-center text-white text-center p-4">
-            <div class="fade-in">
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-shadow">¡PRINCESA SOFÍA!</h1>
-                <h2 class="text-xl md:text-2xl lg:text-3xl mt-4 text-shadow">una historia magica está por empezar.</h2>
+        <section class="hero-bg h-screen w-full flex flex-col items-center justify-start text-white text-center p-4 relative">
+            <!-- Títulos principales -->
+            <div class="fade-in relative z-10 p-4 md:p-0 pt-16">
+                <h1 class="text-7xl md:text-8xl lg:text-9xl font-bold text-shadow vogue-font">VOGUE</h1>
+                <h1 class="text-4xl md:text-7xl lg:text-8xl font-bold text-shadow mt-32">¡PRINCESA SOFÍA!</h1>
+                <h2 class="text-2xl md:text-4xl lg:text-5xl mt-2 md:mt-4 text-shadow font-normal">una historia magica está por empezar.</h2>
             </div>
+            
+            <!-- Código de barras estético -->
+            <div class="absolute bottom-4 right-4 md:bottom-8 md:right-8 w-16 md:w-28 z-20">
+                <img src="https://i.postimg.cc/3J6wvMVL/Screenshot-2025-09-01-105511.png" alt="Código de barras decorativo" class="w-full h-auto">
+            </div>
+
             <div class="absolute bottom-10 animate-bounce">
                 <svg class="w-8 h-8 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                     <path d="M19 9l-7 7-7-7"></path>
@@ -65,50 +100,50 @@
             </div>
         </section>
 
-        <section id="invitation" class="py-20 px-4">
+        <section id="invitation" class="py-16 px-4">
             <div class="max-w-4xl mx-auto text-center">
-                <p class="text-lg md:text-xl leading-relaxed text-gray-700 mb-12 fade-in">
+                <p class="text-base md:text-xl leading-relaxed text-gray-700 mb-12 fade-in">
                     Estás cordialmente invitado a celebrar los 15 años de Sofía en una velada mágica de encanto y alegría.
                 </p>
 
-                <div id="countdown" class="flex justify-center space-x-4 md:space-x-8 text-center my-16 fade-in">
+                <div id="countdown" class="flex justify-center space-x-2 md:space-x-8 text-center my-16 fade-in">
                     <div>
-                        <span id="days" class="block text-4xl md:text-6xl font-bold text-amber-900">00</span>
+                        <span id="days" class="block text-4xl md:text-6xl font-bold text-violet-500">00</span>
                         <span class="text-xs md:text-sm text-gray-500 uppercase">Días</span>
                     </div>
                     <div>
-                        <span id="hours" class="block text-4xl md:text-6xl font-bold text-amber-900">00</span>
+                        <span id="hours" class="block text-4xl md:text-6xl font-bold text-violet-500">00</span>
                         <span class="text-xs md:text-sm text-gray-500 uppercase">Horas</span>
                     </div>
                     <div>
-                        <span id="minutes" class="block text-4xl md:text-6xl font-bold text-amber-900">00</span>
+                        <span id="minutes" class="block text-4xl md:text-6xl font-bold text-violet-500">00</span>
                         <span class="text-xs md:text-sm text-gray-500 uppercase">Minutos</span>
                     </div>
                     <div>
-                        <span id="seconds" class="block text-4xl md:text-6xl font-bold text-amber-900">00</span>
+                        <span id="seconds" class="block text-4xl md:text-6xl font-bold text-violet-500">00</span>
                         <span class="text-xs md:text-sm text-gray-500 uppercase">Segundos</span>
                     </div>
                 </div>
 
                 <div class="card rounded-lg shadow-lg p-8 md:p-12 max-w-2xl mx-auto fade-in">
-                    <h3 class="text-3xl md:text-4xl font-bold text-amber-900 mb-6">Detalles del Evento</h3>
+                    <h3 class="text-4xl md:text-5xl font-normal text-violet-500 mb-6">Detalles del Evento</h3>
                     <div class="text-left space-y-6">
                         <div class="flex items-start space-x-4">
-                            <svg class="w-6 h-6 text-amber-800 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <svg class="w-6 h-6 text-violet-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                             <div>
                                 <p class="font-semibold text-lg">Fecha</p>
                                 <p class="text-gray-600">Sábado, 27 de Septiembre, 2025</p>
                             </div>
                         </div>
                          <div class="flex items-start space-x-4">
-                            <svg class="w-6 h-6 text-amber-800 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <svg class="w-6 h-6 text-violet-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             <div>
                                 <p class="font-semibold text-lg">Hora</p>
                                 <p class="text-gray-600">7:30 p.m.</p>
                             </div>
                         </div>
                          <div class="flex items-start space-x-4">
-                            <svg class="w-6 h-6 text-amber-800 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <svg class="w-6 h-6 text-violet-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                             <div>
                                 <p class="font-semibold text-lg">Lugar</p>
                                 <p class="text-gray-600">Astoria World Manor</p>
@@ -116,33 +151,86 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="mt-8 pt-6 border-t border-gray-200 text-left space-y-4">
+                        <h3 class="text-4xl md:text-5xl font-normal text-violet-500">Código de Vestimenta</h3>
+                        
+                        <div>
+                            <p class="font-medium text-lg text-gray-700">👗 Damas:</p>
+                            <ul class="text-gray-600 list-disc list-inside space-y-1 ml-4">
+                                <li>Formal elegante, vestido largo.</li>
+                                <li>Por favor, evita los colores morado, fucsia y similares.</li>
+                                <li>Se ruega no usar vestidos cortos.</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-lg text-gray-700">🤵 Caballeros:</p>
+                            <ul class="text-gray-600 list-disc list-inside space-y-1 ml-4">
+                                <li>Traje formal con corbata.</li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <div class="mt-8 pt-6 border-t border-gray-200 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a id="calendarLink" href="#" class="w-full sm:w-auto bg-amber-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-amber-900 transition duration-300 text-center">Añadir al Calendario</a>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Astoria+World+Manor+25-22+Astoria+Blvd,+Queens,+NY+11102" target="_blank" class="w-full sm:w-auto bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition duration-300 text-center">Ver en Mapa</a>
+                        <a id="calendarLink" href="#" class="w-full sm:w-auto bg-violet-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-violet-600 transition duration-300 text-center">Añadir al Calendario</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Astoria+World+Manor+25-22+Astoria+Blvd, Queens, NY 11102" target="_blank" class="w-full sm:w-auto bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition duration-300 text-center">Ver en Mapa</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="rsvp" class="py-20 px-4">
+        <!-- Nueva sección para el carrusel de fotos -->
+        <section class="py-16 px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="carousel-container relative">
+                    <div id="carousel-slide" class="carousel-slide flex">
+                        <!-- Se ha actualizado el orden para una secuencia más variada -->
+                        <img src="https://i.postimg.cc/Kc99tFFh/sofia6.jpg" alt="Foto de 15 años de Sofía 6" class="carousel-img object-cover rounded-xl">
+                        <img src="https://i.postimg.cc/zXt9DK3W/sofia4.jpg" alt="Foto de 15 años de Sofía 4" class="carousel-img object-cover rounded-xl">
+                        <img src="https://i.postimg.cc/x1BhMQv1/sofia5.jpg" alt="Foto de 15 años de Sofía 5" class="carousel-img object-cover rounded-xl">
+                        <img src="https://i.postimg.cc/QCjRCqpg/sofia3.jpg" alt="Foto de 15 años de Sofía 3" class="carousel-img object-cover rounded-xl">
+                        <img src="https://i.postimg.cc/Ssgn1gNj/sofia1.jpg" alt="Foto de 15 años de Sofía 1" class="carousel-img object-cover rounded-xl">
+                        <img src="https://i.postimg.cc/zG3YTp40/sofia2.jpg" alt="Foto de 15 años de Sofía 2" class="carousel-img object-cover rounded-xl">
+                    </div>
+
+                    <!-- Botones de navegación del carrusel -->
+                    <button id="carousel-prev" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition duration-300 z-10">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button id="carousel-next" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition duration-300 z-10">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Fin de la nueva sección -->
+
+
+        <section id="rsvp" class="py-16 px-4">
             <div class="max-w-xl mx-auto card rounded-lg shadow-lg p-8 md:p-12 fade-in">
-                <h3 class="text-3xl md:text-4xl font-bold text-amber-900 mb-6 text-center">Confirmar Asistencia</h3>
+                <h3 class="text-4xl md:text-5xl font-normal text-violet-500 mb-6 text-center">Confirmar Asistencia</h3>
                 <p class="text-center text-gray-600 mb-8">Por favor, confirma tu asistencia antes del 15 de septiembre de 2025.</p>
+                
+                <!-- Formulario modificado para recolectar nombres individuales -->
                 <form id="rsvpForm" class="space-y-6">
                     <div>
-                        <label for="guestName" class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
-                        <input type="text" id="guestName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-800 focus:border-amber-800 transition duration-200" required>
+                        <label for="mainGuestName" class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
+                        <input type="text" id="mainGuestName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-violet-500 focus:border-violet-500 transition duration-200 guest-name-input" required>
                     </div>
-                    <div>
-                        <label for="guestCount" class="block text-sm font-medium text-gray-700 mb-1">Número de Invitados</label>
-                        <input type="number" id="guestCount" value="1" min="1" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-800 focus:border-amber-800 transition duration-200" required>
+                    <div id="additionalGuestsContainer" class="space-y-4">
+                        <!-- Aquí se agregarán dinámicamente los campos de invitados adicionales -->
                     </div>
-                    <button type="submit" class="w-full bg-amber-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-amber-900 transition duration-300">
+                    <button type="button" id="addGuestBtn" class="w-full sm:w-auto bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition duration-300">
+                        + Agregar Invitado
+                    </button>
+                    <button type="submit" class="w-full bg-violet-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-violet-600 transition duration-300">
                         Confirmar Asistencia
                     </button>
                 </form>
+
                 <div class="mt-12">
-                    <h4 class="text-lg font-bold text-amber-900 text-center mb-4">Invitados Confirmados</h4>
+                    <h4 class="text-lg font-bold text-violet-500 text-center mb-4">Invitados Confirmados</h4>
                     <ul id="guestList" class="space-y-2 text-gray-700">
                         <li class="text-center">Cargando invitados...</li>
                     </ul>
@@ -187,22 +275,42 @@
           fetchGuests();
         });
 
-        // Enviar RSVP
+        // Lógica para el nuevo formulario de RSVP
         const rsvpForm = document.getElementById('rsvpForm');
+        const addGuestBtn = document.getElementById('addGuestBtn');
+        const additionalGuestsContainer = document.getElementById('additionalGuestsContainer');
+
+        addGuestBtn.addEventListener('click', () => {
+            const newGuestField = document.createElement('div');
+                        newGuestField.innerHTML = `
+                <label class="block text-sm font-medium text-gray-700 mb-1">Nombre del Invitado</label>
+                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-violet-500 focus:border-violet-500 transition duration-200 guest-name-input" required>
+            `;
+            additionalGuestsContainer.appendChild(newGuestField);
+        });
+
         rsvpForm.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          const name = document.getElementById('guestName').value.trim();
-          const guests = Number(document.getElementById('guestCount').value);
-          if (!name || guests < 1) return;
-          try {
-            await addDoc(collection(db, `artifacts/${appId}/public/data/rsvps`), {
-              name, guests, timestamp: new Date()
-            });
-            rsvpForm.reset();
-            document.getElementById('guestCount').value = '1';
-          } catch (error) {
-            console.error("Error al guardar la confirmación:", error);
-          }
+            e.preventDefault();
+            const guestNameInputs = document.querySelectorAll('.guest-name-input');
+            const guests = Array.from(guestNameInputs).map(input => input.value.trim()).filter(name => name !== '');
+
+            if (guests.length === 0) {
+                return;
+            }
+
+            try {
+                // Ahora se guarda un array de nombres, no un solo nombre y un número.
+                await addDoc(collection(db, `artifacts/${appId}/public/data/rsvps`), {
+                  guests: guests,
+                  timestamp: new Date()
+                });
+                
+                // Reinicia el formulario después de enviar.
+                rsvpForm.reset();
+                additionalGuestsContainer.innerHTML = '';
+            } catch (error) {
+                console.error("Error al guardar la confirmación:", error);
+            }
         });
 
         // Listado en tiempo real (ordenado por fecha)
@@ -223,7 +331,14 @@
               const g = d.data();
               const li = document.createElement('li');
               li.className = 'text-center';
-              li.textContent = `${g.name} (${g.guests} invitados)`;
+              // Corrige el error asegurándose de que 'guests' es un array antes de intentar unirlo.
+              if (Array.isArray(g.guests)) {
+                  li.textContent = g.guests.join(', ');
+              } else if (typeof g.guests === 'string') {
+                  li.textContent = g.guests;
+              } else {
+                  li.textContent = 'Invitado(s) no especificado(s)';
+              }
               list.appendChild(li);
             });
           }, (err) => console.error('Snapshot error:', err));
@@ -249,9 +364,8 @@
     </script>
     <script>
         (function () {
-            // 27 Sep 2025 7:30 pm ET = 23:30:00 Z (UTC)
+            // Lógica del contador
             const TARGET = Date.parse('2025-09-27T23:30:00Z');
-
             const $ = (id) => document.getElementById(id);
             const two = (n) => String(n).padStart(2, '0');
 
@@ -274,13 +388,46 @@
                     clearInterval(timer);
                     const countdownElement = $('countdown');
                     if (countdownElement) {
-                        countdownElement.innerHTML = "<div class='text-2xl font-bold text-amber-900'>¡La celebración ha comenzado!</div>";
+                        countdownElement.innerHTML = "<div class='text-2xl font-bold text-violet-500'>¡La celebración ha comenzado!</div>";
                     }
                 }
             }
 
             tick();
             const timer = setInterval(tick, 1000);
+        })();
+
+        // Lógica del carrusel de fotos
+        (function () {
+            const slideContainer = document.getElementById('carousel-slide');
+            const slides = document.querySelectorAll('.carousel-img');
+            const prevButton = document.getElementById('carousel-prev');
+            const nextButton = document.getElementById('carousel-next');
+
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+            function updateCarousel() {
+                const offset = -currentSlide * 100;
+                slideContainer.style.transform = `translateX(${offset}%)`;
+            }
+
+            // Carrusel de avance automático
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            }, 3000); // Cambia de foto cada 3 segundos
+
+            // Botones de navegación manuales
+            nextButton.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            });
+
+            prevButton.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            });
         })();
     </script>
 </body>
