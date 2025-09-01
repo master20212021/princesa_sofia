@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quinceañera de Sofía Espejo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #FDFBF8;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-bg {
+            background-image: url('https://i.postimg.cc/mZpsmc7m/loren.jpg');
+            background-size: cover;
+            background-position: center 30%;
+        }
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <!-- Chosen Palette: Elegant Gold (Off-white, Gold/Champagne, and Dark Gray) -->
+    <!-- Application Structure Plan: A single-page, immersive design structured as a modern digital invitation. It uses a large hero image with magazine-style text overlay to create a "wow" factor, followed by a clear details section. Key interactions are a live countdown timer to build anticipation and 'Add to Calendar'/'View Map' buttons for user convenience. This structure transforms the static text into an engaging and useful experience, which is more suitable for a web-based invitation than a data-centric dashboard. -->
+    <!-- Visualization & Content Choices: Hero Title -> Goal: Impress/Inform -> Presentation: Large, stylized text overlay on hero image -> Interaction: None (static visual) -> Justification: Creates the desired "magazine cover" aesthetic. | Countdown -> Goal: Engage/Excite -> Presentation: Dynamic number display -> Interaction: Live updates every second -> Justification: Builds anticipation for the event. (Vanilla JS) | Event Details -> Goal: Inform -> Presentation: Clean, readable text blocks -> Interaction: None -> Justification: Ensures clarity of essential information. | Action Buttons -> Goal: Utility -> Presentation: Styled buttons -> Interaction: Click to reveal calendar links or open Google Maps -> Justification: Provides practical, helpful actions for guests. (Vanilla JS for modal, simple links). -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="text-gray-800">
+
+    <main>
+        <section class="hero-bg h-screen w-full flex flex-col items-center justify-center text-white text-center p-4">
+            <div class="fade-in">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-shadow">¡PRINCESA SOFÍA!</h1>
+                <h2 class="text-xl md:text-2xl lg:text-3xl mt-4 text-shadow">una historia magica está por empezar.</h2>
+            </div>
+            <div class="absolute bottom-10 animate-bounce">
+                <svg class="w-8 h-8 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </div>
+        </section>
+
+        <section id="invitation" class="py-20 px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-lg md:text-xl leading-relaxed text-gray-700 mb-12 fade-in">
+                    Estás cordialmente invitado a celebrar los 15 años de Sofía en una velada mágica de encanto y alegría.
+                </p>
+
+                <div id="countdown" class="flex justify-center space-x-4 md:space-x-8 text-center my-16 fade-in">
+                    <div>
+                        <span id="days" class="block text-4xl md:text-6xl font-bold text-amber-900">00</span>
+                        <span class="text-xs md:text-sm text-gray-500 uppercase">Días</span>
+                    </div>
+                    <div>
+                        <span id="hours" class="block text-4xl md:text-6xl font-bold text-amber-900">00</span>
+                        <span class="text-xs md:text-sm text-gray-500 uppercase">Horas</span>
+                    </div>
+                    <div>
+                        <span id="minutes" class="block text-4xl md:text-6xl font-bold text-amber-900">00</span>
+                        <span class="text-xs md:text-sm text-gray-500 uppercase">Minutos</span>
+                    </div>
+                    <div>
+                        <span id="seconds" class="block text-4xl md:text-6xl font-bold text-amber-900">00</span>
+                        <span class="text-xs md:text-sm text-gray-500 uppercase">Segundos</span>
+                    </div>
+                </div>
+
+                <div class="card rounded-lg shadow-lg p-8 md:p-12 max-w-2xl mx-auto fade-in">
+                    <h3 class="text-3xl md:text-4xl font-bold text-amber-900 mb-6">Detalles del Evento</h3>
+                    <div class="text-left space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <svg class="w-6 h-6 text-amber-800 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <div>
+                                <p class="font-semibold text-lg">Fecha</p>
+                                <p class="text-gray-600">Sábado, 27 de Septiembre, 2025</p>
+                            </div>
+                        </div>
+                         <div class="flex items-start space-x-4">
+                            <svg class="w-6 h-6 text-amber-800 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <div>
+                                <p class="font-semibold text-lg">Hora</p>
+                                <p class="text-gray-600">7:30 p.m.</p>
+                            </div>
+                        </div>
+                         <div class="flex items-start space-x-4">
+                            <svg class="w-6 h-6 text-amber-800 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <div>
+                                <p class="font-semibold text-lg">Lugar</p>
+                                <p class="text-gray-600">Astoria World Manor</p>
+                                <p class="text-gray-500 text-sm">25-22 Astoria Blvd, Queens, NY 11102</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-gray-200 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a id="calendarLink" href="#" class="w-full sm:w-auto bg-amber-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-amber-900 transition duration-300 text-center">Añadir al Calendario</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Astoria+World+Manor+25-22+Astoria+Blvd,+Queens,+NY+11102" target="_blank" class="w-full sm:w-auto bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition duration-300 text-center">Ver en Mapa</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center py-12">
+            <p class="text-gray-600">Tu presencia será el mejor regalo para nosotros.</p>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const countdownDate = new Date("September 27, 2025 19:30:00").getTime();
+
+            const interval = setInterval(function () {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = String(days).padStart(2, '0');
+                document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    document.getElementById("countdown").innerHTML = "<div class='text-2xl font-bold text-amber-900'>¡La celebración ha comenzado!</div>";
+                }
+            }, 1000);
+            
+            function generateCalendarLink() {
+                const title = encodeURIComponent("Quinceañera de Sofía Espejo");
+                const description = encodeURIComponent("Celebración de los 15 años de Sofía. ¡Te esperamos!");
+                const location = encodeURIComponent("Astoria World Manor, 25-22 Astoria Blvd, Queens, NY 11102");
+                const startTime = "20250927T233000Z"; 
+                const endTime = "20250928T043000Z"; 
+                
+                const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startTime}/${endTime}&details=${description}&location=${location}`;
+                
+                return googleCalendarUrl;
+            }
+
+            const calendarBtn = document.getElementById('calendarLink');
+            calendarBtn.href = generateCalendarLink();
+            calendarBtn.target = "_blank";
+
+        });
+    </script>
+</body>
+</html>
