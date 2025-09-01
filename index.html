@@ -124,12 +124,115 @@
             </div>
         </section>
 
+        <section id="rsvp" class="py-20 px-4">
+            <div class="max-w-xl mx-auto card rounded-lg shadow-lg p-8 md:p-12 fade-in">
+                <h3 class="text-3xl md:text-4xl font-bold text-amber-900 mb-6 text-center">Confirmar Asistencia</h3>
+                <p class="text-center text-gray-600 mb-8">Por favor, confirma tu asistencia antes del 15 de septiembre de 2025.</p>
+                <form id="rsvpForm" class="space-y-6">
+                    <div>
+                        <label for="guestName" class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
+                        <input type="text" id="guestName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-800 focus:border-amber-800 transition duration-200" required>
+                    </div>
+                    <div>
+                        <label for="guestCount" class="block text-sm font-medium text-gray-700 mb-1">Número de Invitados</label>
+                        <input type="number" id="guestCount" value="1" min="1" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-800 focus:border-amber-800 transition duration-200" required>
+                    </div>
+                    <button type="submit" class="w-full bg-amber-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-amber-900 transition duration-300">
+                        Confirmar Asistencia
+                    </button>
+                </form>
+                <div class="mt-12">
+                    <h4 class="text-lg font-bold text-amber-900 text-center mb-4">Invitados Confirmados</h4>
+                    <ul id="guestList" class="space-y-2 text-gray-700">
+                        <li class="text-center">Cargando invitados...</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <footer class="text-center py-12">
             <p class="text-gray-600">Tu presencia será el mejor regalo para nosotros.</p>
         </footer>
     </main>
 
-    <script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : '';
+        
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        
+        let userId = null;
+        
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                userId = user.uid;
+                await fetchGuests();
+            } else {
+                try {
+                    if (initialAuthToken) {
+                        await signInWithCustomToken(auth, initialAuthToken);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                } catch (error) {
+                    console.error("Error al iniciar sesión:", error);
+                }
+            }
+        });
+
+        const rsvpForm = document.getElementById('rsvpForm');
+        rsvpForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const guestName = document.getElementById('guestName').value.trim();
+            const guestCount = parseInt(document.getElementById('guestCount').value, 10);
+            if (!guestName || guestCount < 1) {
+                return;
+            }
+            try {
+                const rsvpsCollection = collection(db, `artifacts/${appId}/public/data/rsvps`);
+                await addDoc(rsvpsCollection, {
+                    name: guestName,
+                    guests: guestCount,
+                    timestamp: new Date()
+                });
+                document.getElementById('guestName').value = '';
+                document.getElementById('guestCount').value = '1';
+            } catch (error) {
+                console.error("Error al guardar la confirmación:", error);
+            }
+        });
+        
+        const fetchGuests = async () => {
+            const guestListEl = document.getElementById('guestList');
+            const rsvpsCollection = collection(db, `artifacts/${appId}/public/data/rsvps`);
+            onSnapshot(rsvpsCollection, (snapshot) => {
+                const guests = [];
+                snapshot.forEach(doc => {
+                    guests.push(doc.data());
+                });
+                guestListEl.innerHTML = '';
+                if (guests.length > 0) {
+                    guests.forEach(guest => {
+                        const li = document.createElement('li');
+                        li.className = 'text-center';
+                        li.textContent = `${guest.name} (${guest.guests} invitados)`;
+                        guestListEl.appendChild(li);
+                    });
+                } else {
+                    guestListEl.innerHTML = '<li class="text-center text-gray-500">Sé el primero en confirmar tu asistencia.</li>';
+                }
+            }, (error) => {
+                console.error("Error al escuchar los invitados:", error);
+            });
+        };
+        
         document.addEventListener('DOMContentLoaded', function () {
             const countdownDate = new Date("September 27, 2025 19:30:00").getTime();
 
@@ -168,7 +271,6 @@
             const calendarBtn = document.getElementById('calendarLink');
             calendarBtn.href = generateCalendarLink();
             calendarBtn.target = "_blank";
-
         });
     </script>
 </body>
