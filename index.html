@@ -229,50 +229,59 @@
           }, (err) => console.error('Snapshot error:', err));
         }
         
-        document.addEventListener('DOMContentLoaded', function () {
-            // Se ha cambiado la fecha para usar el formato UTC y evitar errores de zona horaria.
-            // Esto garantiza que el cronómetro funcione correctamente en cualquier parte del mundo.
-            const countdownDate = new Date("2025-09-27T19:30:00-04:00").getTime();
-
-            const updateCountdown = () => {
-                const now = new Date().getTime();
-                const distance = countdownDate - now;
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById("days").innerText = String(days).padStart(2, '0');
-                document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-                document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
-                document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
-
-                if (distance < 0) {
-                    clearInterval(interval);
-                    document.getElementById("countdown").innerHTML = "<div class='text-2xl font-bold text-amber-900'>¡La celebración ha comenzado!</div>";
-                }
-            };
-
-            updateCountdown(); 
-            const interval = setInterval(updateCountdown, 1000);
+        function generateCalendarLink() {
+            const title = encodeURIComponent("Quinceañera de Sofía Espejo");
+            const description = encodeURIComponent("Celebración de los 15 años de Sofía. ¡Te esperamos!");
+            const location = encodeURIComponent("Astoria World Manor, 25-22 Astoria Blvd, Queens, NY 11102");
+            const startTime = "20250927T233000Z"; 
+            const endTime = "20250928T043000Z"; 
             
-            function generateCalendarLink() {
-                const title = encodeURIComponent("Quinceañera de Sofía Espejo");
-                const description = encodeURIComponent("Celebración de los 15 años de Sofía. ¡Te esperamos!");
-                const location = encodeURIComponent("Astoria World Manor, 25-22 Astoria Blvd, Queens, NY 11102");
-                const startTime = "20250927T233000Z"; 
-                const endTime = "20250928T043000Z"; 
-                
-                const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startTime}/${endTime}&details=${description}&location=${location}`;
-                
-                return googleCalendarUrl;
-            }
+            const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startTime}/${endTime}&details=${description}&location=${location}`;
+            
+            return googleCalendarUrl;
+        }
 
-            const calendarBtn = document.getElementById('calendarLink');
+        const calendarBtn = document.getElementById('calendarLink');
+        if (calendarBtn) {
             calendarBtn.href = generateCalendarLink();
             calendarBtn.target = "_blank";
-        });
+        }
+    </script>
+    <script>
+        (function () {
+            // 27 Sep 2025 7:30 pm ET = 23:30:00 Z (UTC)
+            const TARGET = Date.parse('2025-09-27T23:30:00Z');
+
+            const $ = (id) => document.getElementById(id);
+            const two = (n) => String(n).padStart(2, '0');
+
+            function tick() {
+                const now = Date.now();
+                let diff = TARGET - now;
+                if (diff < 0) diff = 0;
+
+                const d = Math.floor(diff / 86400000);
+                const h = Math.floor((diff % 86400000) / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                const s = Math.floor((diff % 60000) / 1000);
+
+                if ($('days')) $('days').textContent = two(d);
+                if ($('hours')) $('hours').textContent = two(h);
+                if ($('minutes')) $('minutes').textContent = two(m);
+                if ($('seconds')) $('seconds').textContent = two(s);
+
+                if (diff === 0) {
+                    clearInterval(timer);
+                    const countdownElement = $('countdown');
+                    if (countdownElement) {
+                        countdownElement.innerHTML = "<div class='text-2xl font-bold text-amber-900'>¡La celebración ha comenzado!</div>";
+                    }
+                }
+            }
+
+            tick();
+            const timer = setInterval(tick, 1000);
+        })();
     </script>
 </body>
 </html>
