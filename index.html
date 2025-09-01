@@ -7,7 +7,7 @@
     
     <!-- Open Graph Tags para compartir en redes sociales -->
     <meta property="og:title" content="15 años de Sofía Espejo">
-    <meta property="og:description" content="Confirma tu asistencia o descubre más detalles aquí.">
+    <meta property="og:description" content="Confirma tu asistencia y descubre más detalles aquí.">
     <meta property="og:image" content="https://i.postimg.cc/mZpsmc7m/loren.jpg">
     <meta property="og:url" content="URL_DE_TU_PAGINA_AQUI">
     <meta property="og:type" content="website">
@@ -157,81 +157,77 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import {
+          getAuth, signInAnonymously, onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import {
+          getFirestore, addDoc, onSnapshot, collection, query, orderBy
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : '';
+        // Se usa una variable para el ID de la aplicación, como se recomienda.
+        const appId = "sofia15";
+
+        // Se ha corregido la configuración para usar el bucket de almacenamiento correcto y se ha añadido measurementId.
+        const firebaseConfig = {
+          apiKey: "AIzaSyA32Djd4lrnkVEvHt7J-K8-rNLWaTOXn94",
+          authDomain: "sofia-d17aa.firebaseapp.com",
+          projectId: "sofia-d17aa",
+          storageBucket: "sofia-d17aa.appspot.com",
+          messagingSenderId: "173780305500",
+          appId: "1:173780305500:web:78a740b7e397e0a8e90899",
+          measurementId: "G-HVJ7GBXQPZ"
+        };
         
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app);
         
-        let userId = null;
-        
         onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                userId = user.uid;
-                await fetchGuests();
-            } else {
-                try {
-                    if (initialAuthToken) {
-                        await signInWithCustomToken(auth, initialAuthToken);
-                    } else {
-                        await signInAnonymously(auth);
-                    }
-                } catch (error) {
-                    console.error("Error al iniciar sesión:", error);
-                }
-            }
+          if (!user) await signInAnonymously(auth);
+          fetchGuests();
         });
 
+        // Enviar RSVP
         const rsvpForm = document.getElementById('rsvpForm');
         rsvpForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const guestName = document.getElementById('guestName').value.trim();
-            const guestCount = parseInt(document.getElementById('guestCount').value, 10);
-            if (!guestName || guestCount < 1) {
-                return;
-            }
-            try {
-                const rsvpsCollection = collection(db, `artifacts/${appId}/public/data/rsvps`);
-                await addDoc(rsvpsCollection, {
-                    name: guestName,
-                    guests: guestCount,
-                    timestamp: new Date()
-                });
-                document.getElementById('guestName').value = '';
-                document.getElementById('guestCount').value = '1';
-            } catch (error) {
-                console.error("Error al guardar la confirmación:", error);
-            }
-        });
-        
-        const fetchGuests = async () => {
-            const guestListEl = document.getElementById('guestList');
-            const rsvpsCollection = collection(db, `artifacts/${appId}/public/data/rsvps`);
-            onSnapshot(rsvpsCollection, (snapshot) => {
-                const guests = [];
-                snapshot.forEach(doc => {
-                    guests.push(doc.data());
-                });
-                guestListEl.innerHTML = '';
-                if (guests.length > 0) {
-                    guests.forEach(guest => {
-                        const li = document.createElement('li');
-                        li.className = 'text-center';
-                        li.textContent = `${guest.name} (${guest.guests} invitados)`;
-                        guestListEl.appendChild(li);
-                    });
-                } else {
-                    guestListEl.innerHTML = '<li class="text-center text-gray-500">Sé el primero en confirmar tu asistencia.</li>';
-                }
-            }, (error) => {
-                console.error("Error al escuchar los invitados:", error);
+          e.preventDefault();
+          const name = document.getElementById('guestName').value.trim();
+          const guests = Number(document.getElementById('guestCount').value);
+          if (!name || guests < 1) return;
+          try {
+            await addDoc(collection(db, `artifacts/${appId}/public/data/rsvps`), {
+              name, guests, timestamp: new Date()
             });
-        };
+            rsvpForm.reset();
+            document.getElementById('guestCount').value = '1';
+          } catch (error) {
+            console.error("Error al guardar la confirmación:", error);
+          }
+        });
+
+        // Listado en tiempo real (ordenado por fecha)
+        function fetchGuests() {
+          const list = document.getElementById('guestList');
+          // Se ha agregado orderBy para mostrar los invitados más recientes primero.
+          const q = query(
+            collection(db, `artifacts/${appId}/public/data/rsvps`),
+            orderBy('timestamp', 'desc')
+          );
+          onSnapshot(q, (snap) => {
+            list.innerHTML = '';
+            if (snap.empty) {
+              list.innerHTML = '<li class="text-center text-gray-500">Sé el primero en confirmar tu asistencia.</li>';
+              return;
+            }
+            snap.forEach(d => {
+              const g = d.data();
+              const li = document.createElement('li');
+              li.className = 'text-center';
+              li.textContent = `${g.name} (${g.guests} invitados)`;
+              list.appendChild(li);
+            });
+          }, (err) => console.error('Snapshot error:', err));
+        }
         
         document.addEventListener('DOMContentLoaded', function () {
             // Se ha cambiado la fecha para usar el formato UTC y evitar errores de zona horaria.
