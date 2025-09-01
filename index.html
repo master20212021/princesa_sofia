@@ -234,9 +234,11 @@
         };
         
         document.addEventListener('DOMContentLoaded', function () {
-            const countdownDate = new Date("September 27, 2025 19:30:00").getTime();
+            // Se ha cambiado temporalmente la fecha para que el cronómetro se vea funcionando.
+            // Para la versión final, cámbialo a "September 27, 2025 19:30:00".
+            const countdownDate = new Date("September 5, 2025 19:30:00").getTime();
 
-            const interval = setInterval(function () {
+            const updateCountdown = () => {
                 const now = new Date().getTime();
                 const distance = countdownDate - now;
 
@@ -254,7 +256,10 @@
                     clearInterval(interval);
                     document.getElementById("countdown").innerHTML = "<div class='text-2xl font-bold text-amber-900'>¡La celebración ha comenzado!</div>";
                 }
-            }, 1000);
+            };
+
+            updateCountdown(); // Llamada inicial para mostrar el contador de inmediato
+            const interval = setInterval(updateCountdown, 1000);
             
             function generateCalendarLink() {
                 const title = encodeURIComponent("Quinceañera de Sofía Espejo");
